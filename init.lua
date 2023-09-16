@@ -119,6 +119,9 @@ require('lazy').setup({
     },
   },
 
+  { "catppuccin/nvim", name = "catppuccin" },
+  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+
   {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
@@ -200,6 +203,16 @@ require('lazy').setup({
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
+vim.o.termguicolors = true
+require("bufferline").setup{
+  options = {
+  diagnostics = true;
+
+  }
+}
+-- Navigate buffers
+vim.keymap.set("n", "<S-l>", ":bnext<CR>")
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>")
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -298,7 +311,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'java'},
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
